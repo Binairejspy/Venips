@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+annonces
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    {% include 'menu.html' %}
+</div>
+<div class="row container " style="margin-top: 8em;">
+    <div class="col-lg-4" style="border: 1px solid black;">
+        {% for i in allcmmd reversed %}
+
+        nom commendeur: {{ i.nomusercommande_all }} <br>
+        adresse:{{ i.nomusercommande_all.numero }} <br>
+        prenom:{{ i.nomusercommande_all.prenomclient }} <br>
+        nom:{{ i.nomusercommande_all.nomclient }} <br>
+        id du produit commander: {{ i.id_produit }} <br>
+        quantité du produit commander : {{ i.qt }} <br>
+        date commande: {{ i.date_commande }} <br>
+
+
+        <a href="{% url 'traiter' i.id %}" class="bg-info btn btn-info">Traiter</a>
+        <hr>
+
+
+        {% endfor %}
+
+    </div>
+
+    <div class="col-lg-8 text-center ">
+        {% if img_produit %}
+        <img src="{{ img_produit.img.url }}" alt="" class="img-fluid w-50">
+        <h3 class="bg-warning"> {{img_produit.prix}} GNF</h3>
+
+
+        {% else %}
+        <h3 class="bg-danger">
+            aucun produit d'indentifiant commander
+        </h3>
+        {% endif %}
+
+
+    </div>
+</div>
+<div class="col-lg-4 ">
+    <form action="" method="post" class="form-control fixed-bottom bg-primary">
+        {% csrf_token %}
+        <label for="" class="text-white text-center">insert id du produit pour voir le produit</label><br>
+        <input class="form-control" type="text" name="id_produit" id=""><br>
+        <input class="form-control" type="submit" value="Voir le produit">
+
+    </form>
+</div>
+
+{% include 'footer.html'%}
+
+{% endblock%}

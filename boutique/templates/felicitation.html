@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Boutique
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+  {% include 'menu.html' %}
+</div>
+
+<div class="container text-center   " style="margin-top: 4em; font-size: 2em;margin-bottom: 6em;color: white;">
+    <div class="bg-success">
+      Commande <br>
+      Reussi
+     On vous contactera 
+     Dans quelques heures
+    </div>
+      <img src=" {% static 'img/bravo.gif' %}  " class="img-fluid" alt="client satisfait" width="550" >
+  
+   </div>
+
+{% include 'footer.html' %}
+{% endblock %}

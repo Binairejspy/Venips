@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Boutique
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+    {% include 'menu2.html' %}
+</div>
+
+
+<div class="container ">
+    <div class="row " style="margin-top: 7em; margin-bottom: 5em;  box-shadow: 2px 2px 8px black;">
+        {% for i in tsc reversed %}
+        <div class="col-lg-4 col-md-4 col-6 ">
+            <img src="{{ i.nomproduitcommande.img.url }}" alt="" width="150px">
+        </div>
+        <div class="col-lg-8 col-md-8 col-6 text-center mt-lg-9  mt-5">
+            <span> PRIX:{{ i.nomproduitcommande.prix }} GNF</span>
+            <a href="{% url 'suppression'  i.id %}" class="btn btn-danger offset-lg-8 offset-md-8">supprimer</a>
+        </div>
+        <hr>
+        {% empty%}
+
+        <p> vous n'aviez aucun produits dans votre pannier</p>
+        {% endfor %}
+        <div style="font-size: 2em;">
+            <strong>Total </strong>: <span class="text-danger"> {{ total }}</span> <strong>GNF</strong>
+        </div>
+        <a href="{% url 'felicitation' %}" class="btn btn-success">commandez</a>
+    </div>
+</div>
+
+
+
+{% include 'footer.html' %}
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/css.css'%}">
+
+{% endblock %}
+{% block title %}
+connexion
+{% endblock %}
+{% block content %}
+<div class="container text-center mt-5">
+    <div class="row ">
+        <img src="{% static 'img/logo.png' %}" class="img-fluid" alt=""
+            style="width: 500px; display: block;margin-left: auto;margin-right: auto; padding: 0;"><br>
+        {% if erruser %}
+        <div style="color: red ;font-family: 'Times New Roman', Times, serif;font-size: 1.2em;">{{ erruser }} ou
+            {{ errpass }}</div>
+        {% endif %}
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="username" style="color: white;font-size: 2em;font-family: 'Times New Roman', Times, serif;">Nom
+                d'utilisateur</label><br>
+            <input type="text" name="username" class="form-conx  " style="width:auto; " placeholder="lamine"><br>
+            <label for="password" style="color: white;font-size: 2em;font-family: 'Times New Roman', Times, serif;">Mot
+                de passe</label><br>
+            <input type="password" name="password" class="form-conx " style="width:auto;" placeholder="camara@224"><br>
+            <input type="submit" class="btn btn-primary mt-2" value="Connexion">
+
+            <p style="color: teal;font-family: 'Times New Roman', Times, serif;">si vous aviez pas de compte cliquez sur
+                <a href="{% url 'inscription' %}" style="color: red;"><strong>inscrition</strong></a></p>
+        </form>
+    </div>
+</div>
+{% endblock%}

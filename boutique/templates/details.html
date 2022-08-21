@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Boutique
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+    {% include 'menu2.html' %}
+</div>
+
+<div class="container-fluid mb-4 " style="margin-top: 6em; ">
+    <div class="row">
+        <div class="col-12 col-md-4 col-lg-4 text-center">
+            <a href="{{pointe.img.url}}" target="_blank"><img src="{{pointe.img.url}}" alt="" height="400"
+                    class="img-fluid"></a>
+
+
+        </div>
+        <div class="col-12 col-md-4 col-lg-4">
+            <h2>
+                <p class="text-primary  text-decoration-underline" style="font-size: 1em;"> {{pointe.designation}} </p>
+            </h2>
+            <p>
+                {{pointe.description|safe}}
+
+            </p>
+
+
+
+
+        </div>
+        <div class="col-12 col-md-4 col-lg-4  card  h-50 mt-lg-5 mt-0 bg-dark text-white text-center">
+            <strong class="text-center ">
+                <p class="text-danger  mt-1" style="font-size: 2em;"> {{pointe.prix}} GNF</p>
+            </strong>
+            <form action="{% url 'one_commande' pointe.id %}" method="post">
+                {% csrf_token %}
+                <label for="quantité">Quantité</label>
+                <input type="number" name="quantité" id="" value='1' class="form-control">
+                <div class="row mt-5 mb-5">
+                    <div class="col-12 col-lg-6 col-md-6">
+                        <button class=" btn btn-success  mb-2 mb-lg-0"> <a href="{{id.url_amazon}}" class="card-link  "
+                            resolutionstyle="color: white;text-decoration: none;" target="_blank">amazon</a></button>
+                </div>
+
+                    <div class="col-12 col-lg-6 col-md-6">
+
+                        {% if user.is_authenticated %}
+                        <button class="btn btn-success" type="submit"> <a href="{% url 'one_commande' pointe.id %}"
+                                class="card-link  " style="color: white; text-decoration: none;">commandez</a></button>
+                        {% else %}
+                        <button class="btn btn-success"> <a href="{% url 'connexion' %}" class="card-link "
+                                style="color: white; text-decoration: none;">commandez</a></button>
+                        {% endif %}
+                    </div>
+                </div>
+                <p class="text-center text-decoration-underline">Quand vous cliquez sur amazon c'est sur amazon que vous
+                    alliez effectuer l'achat
+                </p>
+                <p class="text-center text-decoration-underline">Commandez votre {{pointe.designation}},on vous
+                    contacterez dans quelque minute
+                    sur votre numero de
+                    telphone</p>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- ========== Start categorie ========== -->
+
+<div class="row">
+    <h3>Categorie Similaire de :{{pointe.designation}} </h3>
+
+    <div class="col-12 col-md-10 col-lg-10 ">
+        <div class="container-fluid">
+            <div class="row ">
+                <span class="ajoute text-center" style="font-size:1.5em;"></span>
+                <!--la boucle pour la repetion des elements-->
+                {% for i in categorie reversed %}
+
+                <div class="col-6 col-md-4 col-lg-3" style="margin-top: 1em;" height="200" class="img-fluid">
+                    <div class="card h-100">
+                        <a href="{% url 'details' i.id %}">
+                            <img src="{{i.img.url}}" class="card-img-top" alt="..." height="250px" /></a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{i.designation}}</h5>
+
+                            <p>prix : {{i.prix}} FG</p>
+
+                        </div>
+
+                        <div class="card-footer text-center ">
+
+
+                            <a href="#" meta-data="{% url 'ajout_commande'  %}" a_id='{{i.id}}'
+                                class="card-link ajout-commande " style="color: white; " title="ajouter dans le panier">
+                                <img src="{% static 'img/cart-plus.svg' %}" width="36px" alt=""></a>
+
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- ========== End categorie ========== -->
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+{% endblock %}

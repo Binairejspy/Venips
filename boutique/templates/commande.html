@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Boutique
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+  {% include 'menu.html' %}
+</div>
+
+    <div class="commande"  data-url="{% url 'recuperation'  %}" style="margin-top: 8em;">
+        
+    </div>
+{% include 'footer.html' %}
+{% endblock %}

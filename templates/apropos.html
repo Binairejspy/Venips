@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+apropos de Nous
+{% endblock %}
+{% block content %}
+
+{% include 'menu4.html'%}
+
+<div class="container" style="margin-top: 8em;" style="color: white;">
+    <div class="row">
+        <div class="col-12 col-lg-6 col-md-6">
+            <p>
+                <h3>Venips</h3>
+                est une entreprise de vente en ligne des produits
+                de qualité .nous notre objectif "Des produits de qualité et à des prix
+                abordable et à n'importe où ".la navigation est tellement facile que même un enfant peut l'utiliser.
+                crée en 2021 par des etudiants passionnés à rendre la vie facile pour tout le monde
+
+            </p>
+        </div>
+        <div class="col-12 col-lg-6 col-md-6">
+            <img src=" {% static 'img/personne.jpg' %}  " class="img-fluid" alt="personne heureuse" width="600">
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12 col-lg-6 col-md-6">
+            <img src=" {% static 'img/client.jpg' %}  " class="img-fluid" alt="client satisfait" width="700">
+        </div>
+        <div class="col-12 col-lg-6 col-md-6">
+            <p>
+                <h3>
+                    Nos clients
+                </h3>
+                sont satisfaits de nos services car nos prix sont abordables et la qualité
+                de nos produits sont meilleures en plus nos dates livraisons respects les delaits
+            </p>
+
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12 col-lg-6 col-md-6">
+            <p>
+                <h3>
+                    Mode de livraisons
+                </h3>
+                Nous avons beaucoup modes de livraisons ça depend de la distance
+                du client .est une livraisons payante garantie et sur
+                le respect du delaits est notre priorité
+
+            </p>
+        </div>
+        <div class="col-12 col-lg-6 col-md-6">
+            <img src=" {% static 'img/livraison.jpg' %}  " class="img-fluid" alt="personne heureuse" width="450">
+        </div>
+    </div>
+
+    <div class="row mt-5 mb-5">
+        <div class="col-12 col-lg-6 col-md-6">
+            <img src=" {% static 'img/employe.jpg' %}  " class="img-fluid" alt="client satisfait" width="550">
+        </div>
+        <div class="col-12 col-lg-6 col-md-6">
+            <p>
+                <h3>
+                    Employer
+                </h3>
+                nos employers sont respects et leurs voix sont aussi respectée .c'est des personnes innovantes
+                peuvent tout donné pour vous satisfaire .c'est le personne les plus acceuillantes et disponibles
+
+            </p>
+
+        </div>
+    </div>
+</div>
+{% include 'footer.html'%}
+{% endblock %}

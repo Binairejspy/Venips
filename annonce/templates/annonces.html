@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+annonces
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    {% include 'menu3.html' %}
+</div>
+<!--menu image pour la navigation des annonces-->
+<div class="   row  text-center" style="margin-top: 6em;background-color: rgba(55, 197, 197, 0.158);">
+    <div class="col-lg-3 col-md-4 col-6 ">
+        <a href="{% url 'filter_annonce' element_annonce='voiture' %}">
+            <img src="{% static 'img/voiture.svg' %}" class="img-fluid" alt="logo pour les annonces de voitures"
+                width="150px">
+
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+        <a href="{% url 'filter_annonce' element_annonce='electrique' %}">
+            <img src="{% static 'img/ordinateur.svg' %}" alt="logo pour les annonces de ordinateur" width="150px">
+
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+        <a href="{% url 'filter_annonce' element_annonce='fille' %}">
+            <img src="{% static 'img/habits.svg' %}" alt="logo pour les annonces de habits" width="150px">
+
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+        <a href="{% url 'filter_annonce' element_annonce='telephone' %}">
+            <img src="{% static 'img/telephone.svg' %}" alt="logo pour les annonces de telephone" width="150px">
+
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6 mt-5">
+        <a href="{% url 'filter_annonce' element_annonce='homme' %}">
+            <img src="{% static 'img/tshirt-solid.svg' %}" alt="logo pour les annonces de homme" width="150px">
+
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6 mt-5">
+        <a href="{% url 'filter_annonce' element_annonce='ordinateurs' %}">
+            <img src="{% static 'img/laptop-solid.svg' %}" alt="logo pour les annonces de ordinateur" width="150px">
+
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6 mt-5">
+        <a href="{% url 'filter_annonce' element_annonce='autre' %}">
+            <img src="{% static 'img/autre.svg' %}" alt="logo pour les annonces de autre" width="150px">
+
+        </a>
+    </div>
+    {% if user.is_authenticated %}
+    <div class="col-lg-3 col-md-4 col-6 mt-5">
+        <a href="{% url 'ajout_annonce' %}">
+            <img src="{% static 'img/plus.svg' %}" alt="logo pour ajoute des annonces" width="120px">
+
+        </a>
+    </div>
+    {% else %}
+    <div class="col-lg-3 col-md-4 col-6 mt-5">
+        <a href="{% url 'connexion' %}">
+            <img src="{% static 'img/plus.svg' %}" alt="logo pour ajoute des annonces" width="120px">
+
+        </a>
+    </div>
+    {% endif %}
+
+
+</div>
+<!--FIN MENU IMAGE-->
+
+
+
+<!-- ========== Start formulaire de cherche des annonces ========== -->
+<div class="container-fluid row mt-5  ">
+    <div class="col-12">
+        <form action="{% url 'recherche_annonce' %}" class="row" method="GET">
+            {% csrf_token %}
+            <input type="text" required class="col-lg-8 form-b" placeholder="Rechercher une annonce ici"
+                name="mot_annonce">
+            <button type="submit" value="rechercher" class=" col-lg-2 btn btn-outline-primary">Recherche</button>
+        </form>
+    </div>
+</div>
+<!-- ========== End formulaire de cherche des annonces ========== -->
+<!--LES ANNONCES-->
+<div class="container">
+    <div class="row ">
+
+        {% for i in annonce reversed %}
+
+
+        <div class="col-sm-12 col-md-4 col-lg-3" style="margin-top: 1em;">
+            <div class="card h-100 ">
+                <a href="{% url 'details_annonce' i.id %}">
+                    <img src="{{i.img_annonce.url}}" class="card-img-top" alt="..." height="200px" /></a>
+                <div class="card-body">
+                    <h5 class="card-title">{{i.desi_annonce}}</h5>
+                    <p class="card-text">
+                        <!-- {{i.description|truncatewords:10}} <br>-->
+                    </p>
+                    <p>prix : {{i.prix_annonce}} FG</p>
+                    <p class="text-danger">{{i.nature}} </p>
+                </div>
+                <div class="card-footer text-center bg-dark mb-4">
+                    <button class="btn btn-success text-center">
+                        <a href="{% url 'details_annonce' i.id %}" class="card-link "
+                            style="color: white; text-decoration: none; ">aperçu</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        {% endfor %}
+
+    </div>
+</div>
+{% include 'footer.html'%}
+
+{% endblock%}

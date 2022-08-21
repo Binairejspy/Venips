@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/css.css'%}">
+
+{% endblock %}
+{% block title %}
+acceuil
+{% endblock %}
+{% block content %}
+<div class="container-fluid ">
+  <!-- inclusion du fichier menu.html-->
+  {%  include 'menu.html'%}
+  <!-- inclusion du fichier caroussel.html-->
+  {% include 'caroussel.html'%}
+  <!-- end fichier caroussel.html-->
+
+
+  <!-- la liste des derniers produits-->
+
+  <div class="mt-5 text-capitalize title-recent article" style="font-size: 1.5em;font-weight: bold;">
+    les article recents
+
+  </div>
+
+
+  <div class="row img-article text-center ">
+    {% for i in article reversed %}
+    <div class="col-lg-2  col-md-3 card col-6 ">
+      <a href="{% url 'details' i.id %}">
+        <img src="{{i.img.url}}" class="img-fluid article " alt="" width="200" id={{i.id}} id={{i.id}} x
+          style="display: block;margin-left: auto;margin-right: auto;"></a>
+      <p class="bg-danger text-white">{{i.prix}} GNF</p>
+
+    </div>
+    {% endfor %}
+
+
+  </div>
+
+
+  <!-- ========== Start produits ========== -->
+  <p class="text-center bg-primary annonces mt-3"
+    style="padding: 0; border-radius: 5em 8em ;font-size: 2em;color:white;"> Nos Produits</p>
+
+  <div class="container">
+
+    <div class="  row mb-4 ">
+
+
+      <!--la boucle pour la repetion des elements-->
+      {% for i in ts  %}
+
+      <div class="col-6 col-md-4 col-lg-3" style="margin-top: 1em;" height="200" class="img-fluid">
+        <div class="card h-100">
+          <a href="{% url 'details' i.id %}">
+            <img src="{{i.img.url}}" class="card-img-top" alt="..." height="200px" /></a>
+          <div class="card-body">
+            <h5 class="card-title text-center  text-decoration-underline">{{i.designation}}</h5>
+
+            <strong>
+              <p class=" text-center "> {{i.prix}} FG</p>
+            </strong>
+
+          </div>
+
+
+        </div>
+      </div>
+      {% endfor %}
+      <!--fin de la boucle-->
+
+
+
+    </div>
+  </div>
+  <!-- ========== End produits ========== -->
+
+  <!-- end liste-->
+  <!-- Le debut des annonces-->
+  <p class="text-center bg-primary annonces" style="padding: 0; border-radius: 5em 8em;font-size: 2em;color:white">
+    NOS ANNONCES</p>
+  <div class="container">
+    <div class="row">
+
+
+      {% for i in annonce  %}
+
+
+      <div class="col-sm-12 col-md-4 col-lg-3 mb-4" style="margin-top: 1em;">
+        <div class="card h-100 ">
+          <a href="{% url 'details_annonce' i.id %}">
+            <img src="{{i.img_annonce.url}}" class="card-img-top" alt="..." height="250px" /></a>
+          <div class="card-body">
+            <h5 class="card-title">{{i.desi_annonce}}</h5>
+            <p class="card-text">
+              <!-- {{i.description|truncatewords:10}} <br>-->
+            </p>
+            <p>prix : {{i.prix_annonce}} FG</p>
+            <p class="text-danger">{{i.nature}} </p>
+          </div>
+          <div class="card-footer text-center bg-dark">
+            <button class="btn btn-success text-center">
+              <a href="{% url 'details_annonce' i.id %}" class="card-link "
+                style="color: white;text-decoration: none; ">Aperçu</a>
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+
+      {% endfor %}
+    </div>
+
+  </div>
+
+
+
+
+
+  <!-- les investissements disponibles
+        <div class="row">
+            <p class="text-center bg-primary annonces mt-3" style="padding: 2em; border-radius: 5em 8em;font-size: 2em;color:white;background-image:url(static/img/client.jpg)">Avoir l’argent c’est une chose mais le furtifier c’est une autre chose
+                l’argent appel l’argent</p>
+                <div class="col-lg-6">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex et unde harum. Tempora optio dolorem natus atque mollitia ipsum, adipisci eaque doloribus minima sapiente ipsam accusantium dignissimos odio architecto amet.
+                Laboriosam vel adipisci, quaerat unde inventore odit eveniet! Nobis odio natus nihil fuga, ad assumenda modi magni dolorum repellendus est animi earum sequi possimus eos consequuntur libero delectus autem! Voluptates?
+                Saepe alias mollitia officia eligendi velit maiores iste tempore, fugit eum sint, dignissimos, non numquam! Dolorum, debitis earum similique recusandae cumque reprehenderit, sequi corporis maiores quaerat ipsam numquam a delectus.
+                Aperiam error ad at debitis! Reprehenderit esse excepturi asperiores, corrupti numquam odio, aliquam possimus pariatur unde eius dicta commodi iure animi sequi? Laboriosam dolores laborum recusandae minus distinctio dignissimos nemo.</div>
+                <div class="col-lg-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus excepturi qui in accusantium ratione fugit ducimus libero, est non asperiores expedita quaerat similique, praesentium consequatur, architecto corporis. Aspernatur, asperiores error.
+                Ab molestiae amet rerum asperiores aut aperiam explicabo nostrum fuga saepe, consequuntur a inventore cumque ut magni quaerat quibusdam consequatur voluptas ipsa sapiente. Dolor doloribus tempora optio dignissimos alias consectetur!
+                Earum asperiores ratione, neque deserunt totam temporibus ad ipsam hic dicta aspernatur, nulla doloribus quidem culpa consequuntur modi voluptates! Maiores minima praesentium soluta, magnam debitis voluptate est aspernatur fugit laudantium?
+                Cumque quaerat velit nobis a libero rem beatae et architecto ea. Eius corporis, culpa iure ducimus deserunt, animi sunt suscipit reiciendis soluta corrupti fuga. Voluptatibus, accusantium tenetur? Voluptatum, impedit nobis!</div>
+        </div>
+
+
+
+
+
+        -->
+  <!--les freelances-->
+
+  <!---
+  <div class="row">
+    <p class="text-center bg-primary annonces mt-3"
+      style="padding: 2em; border-radius: 5em 8em;font-size: 2em;color:white;"> Les conceptions les plus populaires</p>
+
+    {% for i in free_concept  %}
+
+    <div class="col-sm-12 col-md-4 col-lg-3 mb-4" style="margin-top: 1em;">
+      <div class="card h-100 ">
+
+        <a href="{% url 'profile' i.nomfreelance_id %}">
+          <img src="{{i.img_concept.url}}" class="card-img-top" alt="..." height="200px" /></a>
+        <div class="card-body">
+          <h5 class="card-title">{{i.designation}}</h5>
+
+
+        </div>
+
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+</div>
+
+
+
+
+
+
+
+
+-FIN FREELANC-->
+
+
+
+
+</div>
+{% include 'footer.html'%}
+{% endblock%}

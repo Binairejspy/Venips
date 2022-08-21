@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- MDB-->
+  <link rel="stylesheet" href="{% static 'css/mdb.min.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  {% block style %}
+  <link rel="stylesheet" href="{% static 'css/css.css'%}">
+  {% endblock %}
+  <!-- END MDB-->
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+  <link rel="shortcut icon" href="{% static 'img/logo.png' %}">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <title>
+    Venips | {% block title %}
+    base
+    {% endblock title %}
+  </title>
+</head>
+
+<body style="background-color:  rgb(21, 19, 31);" class="text-white">
+
+  <!-- Navbar -->
+
+  {% block content %}
+  {% endblock %}
+
+
+  <!-- les fichiers javascript-->
+  <script src="{% static 'js/jquery.js' %}"></script>
+  <script src="{% static 'js/mdb.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.js' %}"></script>
+  <script src="{% static 'js/index.js' %}"></script>
+  <!-- end fichiers-->
+</body>
+
+</html>

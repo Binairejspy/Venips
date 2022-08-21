@@ -1,0 +1,22 @@
+<style>
+  .menu-v:hover {
+    color: red;
+    border: 2px solid black;
+  }
+
+  .menu-v:active {
+    color: red;
+    border: 2px solid black;
+  }
+</style>
+<div class="container mb-3">
+  <div class="row">
+    <div class="col-12 col-md-2 col-lg-2 menu" style="border-right: 2px solid black;">
+      <a href="{% url 'boutique_filter' 'chaussure' %}" class="menu-v pb-2  ">Chaussures</a><br>
+      <a href="{% url 'boutique_filter' 'chemise' %}" class="menu-v  pb-2">Chemises</a><br>
+      <a href=" {% url 'boutique_filter' 'vetement' %}" class="menu-v  pb-2">Vetements</a><br>
+      <a href=" {% url 'boutique_filter' 'telephone' %} " class="menu-v  pb-2">Telephones</a><br>
+      <a href=" {% url 'boutique_filter' 'ordinateur' %} " class="menu-v  pb-2">Ordinateurs</a><br>
+
+
+    </div>

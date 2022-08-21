@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/css.css'%}">
+
+{% endblock %}
+{% block title %}
+connexion
+{% endblock %}
+{% block content %}
+<div class="container " style="margin-top: 3em;">
+    <div class="row text-center">
+        <div class="col-lg-6 col-md-6 col-12  ">
+            <img src="{% static 'img/logo.png' %}" class="img-fluid" alt=""
+                style="width: 500px; display: block;margin-left: auto;margin-right: auto; padding: 0;">
+
+        </div>
+        <div class="col-lg-6 col-md-6 col-12" style="color: rgb(250, 249, 249);font-size: 1.5em;">
+            <div class=" text-danger" style="font-family: 'Times New Roman', Times, serif;">{{ error_pass }}</div>
+            <form action="" enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                <div class="fieldWrapper">
+                    {{ form.nomclient.errors }}
+                    <label for="{{ form.nomclient.id_for_label }}"
+                        style="font-family: 'Times New Roman', Times, serif;">Votre Nom:</label>
+                    {{ form.nomclient }}
+                </div>
+                <div class="fieldWrapper">
+                    {{ form.prenomclient.errors }}
+                    <label for="{{ form.prenomclient.id_for_label }}"
+                        style="font-family: 'Times New Roman', Times, serif;">Votre Prenom:</label>
+                    {{ form.prenomclient }}
+                </div>
+                <div class="fieldWrapper">
+
+
+                    <label for="{{ form.emailclient.id_for_label }}"
+                        style="font-family: 'Times New Roman', Times, serif;">Votre email:</label>
+                    {{ form.emailclient }}
+                    {% if form.emailclient.errors %}
+                    <div class="text-danger" style="font-family: 'Times New Roman', Times, serif;">l'email est deja pris
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="fieldWrapper">
+
+                    <label for="{{ form.nomutilisateur.id_for_label }}"
+                        style="font-family: 'Times New Roman', Times, serif;">Votre nom utilisateur:</label>
+                    {{ form.nomutilisateur }}
+                    {% if form.nomutilisateur.errors %}
+                    <div class="text-danger" style="font-family: 'Times New Roman', Times, serif;">Nom d'utilisateur pas
+                        disponible </div>
+                    {% endif %}
+                </div>
+                <div class="fieldWrapper">
+
+                    <label for="{{ form.motdepasse.id_for_label }}"
+                        style="font-family: 'Times New Roman', Times, serif;">Votre mot de passe:</label>
+                    {{ form.motdepasse }}
+
+                </div>
+                <div class="fieldWrapper">
+                    {{ form.motdepasse_conf.errors }}
+                    <label for="{{ form.motdepasse_conf.id_for_label }}"
+                        style="font-family: 'Times New Roman', Times, serif;">Confirmer votre mot de passe:</label>
+                    {{ form.motdepasse_conf }}
+                </div>
+
+
+                <div class="fieldWrapper">
+                    {{ form.numero.errors }}
+                    <label for="{{ form.numero.id_for_label }}"
+                        style="font-family: 'Times New Roman', Times, serif;">Telephone:</label>
+                    {{ form.numero }}
+                </div>
+
+
+
+
+
+                <input type="submit" class="btn btn-primary" style="font-family: 'Times New Roman', Times, serif;"
+                    value="S'inscrire">
+
+
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+{% endblock%}

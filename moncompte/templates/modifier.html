@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Contact
+{% endblock %}
+{% block content %}
+
+<div class="">
+	{% include 'menux.html' %}
+</div>
+
+<div class=" container" style="margin-top: 5em;">
+
+	<!-- ========== Start formulaire de changement des information des annonces ========== -->
+	<form action="{% url 'modif' annonce_modif.id  %}" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		<label for="designation">Designation</label>
+		<input type="text" name="designation" id="" value={{annonce_modif.desi_annonce}} class="form-control">
+		<label for="prix">Prix d'annonce</label>
+		<input type="number" name="prix" id="" value={{annonce_modif.prix_annonce}} class="form-control">
+		<label for="lieu">Lieu du produit</label>
+		<input type="text" name="lieu" id="" value={{annonce_modif.lieu_produit}} class="form-control">
+		<label for="nature">Nature</label>
+		<select name="nature" class="form-control " id="id_nature">
+			<option value="occasion">occasion</option>
+
+			<option value="nouveau">nouveau</option>
+
+		</select>
+		<label for="type">type</label>
+		<select name="type" class="form-control " id="id_A_type">
+			<option value="vetement">vetement</option>
+
+			<option value="chaussure">chaussure</option>
+
+			<option value="chemise">chemise</option>
+
+			<option value="technologie">technologie</option>
+
+			<option value="telephone">telephone</option>
+
+			<option value="ordinateur">ordinateur</option>
+
+			<option value="autre" selected>autre</option>
+			placeholder="ex:voiture;pour faliciter la recherche">
+		</select>
+		<label for="img">Image de votre annonce</label>
+		<input type="file" name="img" id="" class="form-control">
+		<label for="description">la description de l'annonce</label>
+		<textarea name="description" id="" cols="30" rows="10"
+			class="form-control">{{annonce_modif.desc_annonce}}</textarea>
+		<input type="submit" value="changer" class="btn btn-success">
+	</form>
+	<!-- ========== End formulaire de changement des information des annonces ========== -->
+
+</div>
+
+
+{% include 'footer.html'%}
+{% endblock %}

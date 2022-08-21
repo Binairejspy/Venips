@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Boutique
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+  {% include 'menu2.html' %}
+</div>
+<div class="container-fluid row " style="margin-top: 6em;">
+  <div class="col-lg-6 col-md-8 ">
+    <!-- ========== Start formulaire de recherche ========== -->
+    <form action=" {% url 'recherche' %}" method="GET" class="row">
+      {% csrf_token %}
+      <input type="text" name="mots" id="" placeholder="rechercher un produit"
+        class="col-lg-8 col-md-9 form-control-sm " required>
+      <input type="submit" value="rechercher" class="col-lg-4 col-md-3 btn btn-primary">
+
+
+    </form>
+    <!-- ========== End formulaire de recherche ========== -->
+
+
+  </div>
+
+</div>
+<!--menu trié-->
+
+{% include 'menu_tries.html' %}
+
+<!--fin menu trié-->
+
+
+<div class="col-12 col-md-10 col-lg-10">
+  <div class="container-fluid">
+    <div class="row ">
+      <span class='ajoute text-center  text-white' style="font-size:1.5em;"></span>
+
+      <!--la boucle pour la repetion des elements-->
+      {% for i in trouver %}
+
+      <div class="col-sm-12 col-md-4 col-lg-4" style="margin-top: 1em;" height="200" class="img-fluid">
+        <div class="card h-100">
+          <a href="{% url 'details' i.id %}">
+            <img src="{{i.img.url}}" class="card-img-top" alt="..." /></a>
+          <div class="card-body">
+            <h5 class="card-title">{{i.designation}}</h5>
+
+            <p>prix : {{i.prix}} FG</p>
+
+          </div>
+
+          <div class="card-footer text-center ">
+            <button class="btn-success text-center">
+              <a href="{% url 'details' i.id %}" class="card-link " style="color: white; ">Details</a>
+            </button>
+
+            <a href="#" meta-data="{% url 'ajout_commande'  %}" a_id='{{i.id}}' class="card-link ajout-commande "
+              style="color: white; ">
+              <img src="{% static 'img/cart-plus.svg' %}" width="36px" alt=""></a>
+
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="text-center bg-warning">Aucun produit de nom <span class="text-danger">{{mot}}</span> n'est disponible
+        dans la Boutique</div>
+      {% endfor %}
+      <!--fin de la boucle-->
+
+
+
+    </div>
+  </div>
+</div>
+</div>
+</div>
+{% include 'footer.html' %}
+{% endblock %}

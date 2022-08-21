@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Contact
+{% endblock %}
+{% block content %}
+
+{% include 'menu5.html' %}
+<div class="container ">
+    <div class="row mb-5" style="margin-top: 8em;">
+        <p class="text-center bg-success text-white"
+            style="font-size: 1.5em;font-family: 'Times New Roman', Times, serif;">{{ info }}</p>
+        <div class=" col-lg-6 col-md-6">
+            <form action="" method="post" class="form-control ">
+                {% csrf_token %}
+                <label for="name" style="font-family: 'Times New Roman', Times, serif;">Votre nom </label><br>
+                <input type="text" name="name" required id="" class="form-control"><br>
+                <label for="message" style="font-family: 'Times New Roman', Times, serif;">Commentaire</label><br>
+                <textarea name="message" required id="" cols="30" rows="10" class="form-control"></textarea><br>
+                <input type="submit" class="btn btn-primary" value="Envoyer">
+            </form>
+        </div>
+        <div class=" col-lg-6 col-md-6">
+            <img src="{% static 'img/boutique.jpg' %}" alt="" class="img-fluid">
+        </div>
+    </div>
+</div>
+{% include 'footer.html'%}
+{% endblock %}

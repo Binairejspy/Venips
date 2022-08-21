@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Contact
+{% endblock %}
+{% block content %}
+
+{% include 'menux.html' %}
+
+<div class="container  " style="margin-top:8em;margin-bottom: 8em;">
+  <div class="row">
+    <div class="col-lg-4 col-md-4 h-50  text-white "
+      style="text-align: center;padding: none; width: 20em;border: 2px solid white">
+      <img src="{{ info.profil.url }}" class="img-thumbnail" alt="" width="280px"><br>
+      <p class="text-capitalize mt-2">{{ info.nomclient }} {{ info.prenomclient }} </p>
+      <p class="btn btn-info" style="width: 18em;" data-bs-toggle="modal" data-bs-target="#exampleModal">Changer
+        photo de profile</p>
+
+      <p class="btn btn-primary" style="width: 18em;">Mes Annonces</p>
+      <p class="btn btn-danger" style="width: 18em;">Paramettre du compte</p> <br>
+      <a href="{% url 'ajout_annonce' %}" class="">Ajouter des Annonces </a> <br>
+
+
+    </div>
+    <div class="col-lg-8 col-md-8">
+      <span class="text-capitalize mt-2">{{ info.nomclient }} {{ info.prenomclient }} </p>
+        <span>nom utilisateur : {{ info.nomutilisateur }}</span><br>
+        <span>mon Email : {{ info.emailclient }}</span><br>
+        <span>nom utilisateur : {{ info.numero }}</span><br>
+
+
+        <p class="bg-primary text-center mt-2 text-white">Mes annonces</p>
+        <div class="row">
+
+          {% for i in annonce_user reversed %}
+
+
+          <div class="col-sm-12 col-md-4 col-lg-3" style="margin-top: 1em;">
+            <div class="card h-100 ">
+              <a href="{% url 'details_annonce' i.id %}">
+                <img src="{{i.img_annonce.url}}" class="card-img-top" alt="..." height="200px" /></a>
+              <div class="card-body">
+                <h5 class="card-title">{{i.desi_annonce}}</h5>
+                <p class="card-text">
+                  <!-- {{i.description|truncatewords:10}} <br>-->
+                </p>
+                <p>prix : {{i.prix_annonce}} FG</p>
+                <p class="text-danger">{{i.nature}} </p>
+              </div>
+              <div class="card-footer text-center bg-dark">
+
+                <button class="btn-danger text-center">
+                  <a href="{% url 'modif' i.id %}" class="card-link " style="color: white; ">Modifier</a>
+
+                </button>
+                <button class=" btn-warning text-center">
+                  <a href="{% url 'supp' i.id %}" class="card-link " style="color: white; ">Suppr</a>
+
+                </button>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          {% endfor %}
+
+
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal change information personelle-->
+<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background-color:  rgb(21, 19, 31);">
+      <div class="modal-header bg-dark text-center ">
+        <h5 class="modal-title text-center text-white " id="exampleModalLabel"> VOS INFORMATIONS</h5>
+        <button type="button" class="btn-close bg-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="{% url 'changer_photo' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="modal-body">
+
+
+          <label for="profile">Photo de profile</label>
+          <input type="file" name="profile" id="" class="form-control" value="{{user_connect.profil.url}}">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+          <input type="submit" value="Changer" class="btn btn-primary">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--fin modal change-->
+
+
+
+{% include 'footer.html'%}
+{% endblock %}
